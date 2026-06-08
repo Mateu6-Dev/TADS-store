@@ -1,0 +1,179 @@
+/*  1. VARIÁVEIS DE AMBIENTE (IDENTIDADE VISUAL DA LOJA) */
+:root {
+  --cor-fundo: #f4f6f9;
+  --cor-primaria: #2c3e50;    /* Azul escuro corporativo */
+  --cor-secundaria: #1abc9c;  /* Verde água para botões e destaques */
+  --cor-texto: #333333;
+  --cor-card-fundo: #ffffff;
+  --cor-selo-verde: #2ecc71;  /* Verde vibrante para frete grátis */
+  --cor-selo-texto: #ffffff;
+  --borda-raio: 8px;
+  --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --fonte: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fonte);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+/* 2. ESTRUTURA E LAYOUT (Layout.jsx) */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o rodapé fique sempre embaixo */
+}
+
+.conteudo-principal {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: var(--sombra);
+}
+
+.cabecalho h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Rodapé */
+.rodape {
+  background-color: var(--cor-primaria);
+  color: #bdc3c7;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-top: 3px solid var(--cor-secundaria);
+}
+
+/* 3. VITRINE DE PRODUTOS (Vitrine.jsx) */
+.vitrine-container h2 {
+  margin-bottom: 1.5rem;
+  color: var(--cor-primaria);
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--cor-secundaria);
+  padding-bottom: 0.5rem;
+}
+
+/* Grid Responsivo para os Cards */
+.vitrine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+/*  4. CARDS DE PRODUTO (ProdutoCard.jsx) */
+.produto-card {
+  background-color: var(--cor-card-fundo);
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+/* Efeito Hover sutil para dar vida à interface */
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.produto-imagem {
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--borda-raio) - 2px);
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+}
+
+.produto-nome {
+  font-size: 1.1rem;
+  color: var(--cor-primaria);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  min-height: 2.6rem; /* Garante alinhamento mesmo com nomes maiores */
+  display: flex;
+  align-items: center;
+}
+
+.produto-preco {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--cor-texto);
+  margin-bottom: 0.75rem;
+}
+
+.produto-acoes {
+  width: 100%;
+  margin-top: auto; /* Empurra o botão sempre para o final do card */
+  padding-top: 1rem;
+}
+
+/* 5. COMPONENTES GENÉRICOS DE UI (Selo.jsx e Botao.jsx) */
+/* Selo / Badge */
+.selo {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.selo-verde {
+  background-color: var(--cor-selo-verde);
+  color: var(--cor-selo-texto);
+}
+
+/* Se eu decidir criar outras cores de selo depois: */
+.selo-vermelho {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+/* Botão Customizado */
+.botao-customizado {
+  width: 100%;
+  background-color: var(--cor-secundaria);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: var(--borda-raio);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botao-customizado:hover {
+  background-color: #16a085; /* Tom mais escuro para o hover */
+}
+
+.botao-customizado:active {
+  transform: scale(0.98);
+}
