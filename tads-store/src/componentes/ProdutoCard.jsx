@@ -1,20 +1,26 @@
 import Selo from "./Selo";
 import Botao from "./Botao";
+import BotaoFavorito from "./BotaoFavorito";
 
 function ProdutoCard ({produto}) {
-    const precoFormatado = produto.preco?.toLocaleString("pt-BR", {
+    const precoFormatado = produto.price?.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     });
 
+    const temFreteGratis = produto.price > 50;
+
     return (
         <div className="produto-card">
-            <img src={produto.imagem}  alt={produto.nome} className="produto-imagem" />
-            <h3 className="produto-nome">{produto.nome}</h3>
+            <div className="container-favorito">
+                <BotaoFavorito />
+            </div>
+
+            <img src={produto.thumbnail}  alt={produto.title} className="produto-imagem" />
+            <h3 className="produto-nome">{produto.title}</h3>
             <p className="produto-preco">{precoFormatado}</p>
 
-            {/*Renderização condicional: Só mostra o selo se fretegratis for true */}
-            {produto.freteGratis && <Selo texto="Frete Grátis" cor="verde"/>}
+            {temFreteGratis && <Selo texto="Frete Grátis" cor="verde"/>}
 
             <div className="produto-acoes">
                 <Botao texto="Adicionar ao Carrinho" />

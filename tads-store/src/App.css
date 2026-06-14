@@ -177,3 +177,27 @@ body {
 .botao-customizado:active {
   transform: scale(0.98);
 }
+
+.botao-favorito {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.botao-favorito:hover {
+    transform: scale(1.2);
+}
+
+.botao-favorito:active {
+    transform: scale(0.9);
+}
+
+.botao-favorito.ativo {
+    filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.3));
+}
