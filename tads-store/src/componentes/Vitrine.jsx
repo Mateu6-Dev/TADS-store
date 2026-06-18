@@ -10,35 +10,43 @@ function Vitrine () {
     const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
     const [categorias, setCategorias] = useState([]); 
 
-    useEffect (() => {
-        const buscarProdutos = async () => {
-            try {
-                setCarregando(true);
+    useEffect(() => {
+    const buscarProdutosTech = async () => {
+        try {
+            setCarregando(true);
 
-                const resposta = await fetch("https://dummyjson.com/products?limit=12");
-                if (!resposta.ok) {
-                    throw new Error("Não foi possivel carregar os produtos.");
-                }
-                const dados = await resposta.json();
-                setProdutos(dados.products);
+            const [resSmartphones, resLaptops] = await Promise.all([
+                fetch("https://dummyjson.com/products/category/smartphones"),
+                fetch("https://dummyjson.com/products/category/laptops")
+            ]);
 
-                const respostaCats = await fetch("https://dummyjson.com/products/categories");
-                if (respostaCats.ok) {
-                    const dadosCats = await respostaCats.json();
-                    setCategorias(dadosCats);
-                }
-
-            } catch (err) {
-                setErro(err.message);
-            } finally {
-                setCarregando(false); 
+            if (!resSmartphones.ok || !resLaptops.ok) {
+                throw new Error("Não foi possível carregar os produtos de tecnologia.");
             }
-        };
 
-        buscarProdutos();
-    }, []);
+            const dadosSmartphones = await resSmartphones.json();
+            const dadosLaptops = await resLaptops.json();
 
-    
+            const apenasTech = [...dadosSmartphones.products, ...dadosLaptops.products];
+
+            setProdutos(apenasTech);
+
+            setCategorias([
+                { slug: "smartphones", name: "Smartphones" },
+                { slug: "laptops", name: "Notebooks" }
+            ]);
+
+        } catch (err) {
+            setErro(err.message);
+        } finally {
+            setCarregando(false);
+        }
+    };
+
+    buscarProdutosTech();
+}, []);
+
+
     const produtosFiltrados = produtos.filter((item) => {
         const bateComBusca = item.title.toLowerCase().includes(busca.toLowerCase());
         
