@@ -1,18 +1,17 @@
-/*  1. VARIÁVEIS DE AMBIENTE (IDENTIDADE VISUAL DA LOJA) */
+/*  1. VARIÁVEIS DE AMBIENTE & IDENTIDADE VISUAL */
 :root {
   --cor-fundo: #f4f6f9;
-  --cor-primaria: #334558;    /* Azul escuro corporativo */
-  --cor-secundaria: #1abc9c;  /* Verde água para botões e destaques */
+  --cor-primaria: #334558;      /* Azul escuro corporativo */
+  --cor-secundaria: #1abc9c;    /* Verde água para botões e destaques */
   --cor-texto: #333333;
   --cor-card-fundo: #ffffff;
-  --cor-selo-verde: #2ecc71;  /* Verde vibrante para frete grátis */
+  --cor-selo-verde: #2ecc71;    /* Verde vibrante para frete grátis */
   --cor-selo-texto: #ffffff;
   --borda-raio: 8px;
   --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
   --fonte: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Reset básico */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,11 +25,11 @@ body {
   line-height: 1.6;
 }
 
-/* 2. ESTRUTURA E LAYOUT (Layout.jsx) */
+/*  2. ESTRUTURA BASE DA APLICAÇÃO */
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Garante que o rodapé fique sempre embaixo */
+  min-height: 100vh;
 }
 
 .conteudo-principal {
@@ -41,21 +40,6 @@ body {
   padding: 2rem 1rem;
 }
 
-/* Cabeçalho */
-.cabecalho {
-  background-color: var(--cor-primaria);
-  color: #ffffff;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  box-shadow: var(--sombra);
-}
-
-.cabecalho h1 {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-/* Rodapé */
 .rodape {
   background-color: var(--cor-primaria);
   color: #bdc3c7;
@@ -65,7 +49,187 @@ body {
   border-top: 3px solid var(--cor-secundaria);
 }
 
-/* 3. VITRINE DE PRODUTOS (Vitrine.jsx) */
+/* 3. COMPONENTE: CABEÇALHO DINÂMICO */
+.cabecalho-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--cor-primaria);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho-titulo {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.cabecalho-link-home {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cabecalho-link-home:hover {
+  color: var(--cor-secundaria);
+}
+
+.cabecalho-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.menu-link:hover {
+  color: var(--cor-secundaria);
+}
+
+.menu-link.destaque {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.menu-link.destaque:hover {
+  color: #27ae60;
+}
+
+.botao-sair-topo {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.botao-sair-topo:hover {
+  background-color: #c0392b;
+}
+
+/* 4. COMPONENTES REUTILIZÁVEIS DE UI (Botões, Selos e Links) */
+/* Botão Padrão de Compra */
+.botao-customizado {
+  width: 100%;
+  background-color: var(--cor-secundaria);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: var(--borda-raio);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botao-customizado:hover {
+  background-color: #16a085;
+}
+
+.botao-customizado:active {
+  transform: scale(0.98);
+}
+
+/* Botão de Favoritar Card */
+.botao-favorito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.botao-favorito:hover {
+  transform: scale(1.2);
+}
+
+.botao-favorito:active {
+  transform: scale(0.9);
+}
+
+.botao-favorito.ativo {
+  filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.3));
+}
+
+/* Links Genéricos */
+.link-detalhes-container {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.link-detalhes {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.link-detalhes:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Badges / Selos de Informação */
+.selo {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.selo-verde {
+  background-color: var(--cor-selo-verde);
+  color: var(--cor-selo-texto);
+}
+
+.selo-vermelho {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+/*  5. PÁGINA: HOME & VITRINE DE PRODUTOS */
+.home-container {
+  padding: 1rem 0;
+}
+
+.home-hero {
+  text-align: center;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: white;
+  padding: 2.5rem 1rem;
+  border-radius: var(--borda-raio);
+  margin-bottom: 2rem;
+  box-shadow: var(--sombra);
+}
+
+.home-hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
 .vitrine-container h2 {
   margin-bottom: 1.5rem;
   color: var(--cor-primaria);
@@ -74,7 +238,6 @@ body {
   padding-bottom: 0.5rem;
 }
 
-/* Grid Responsivo para os Cards */
 .vitrine-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -82,7 +245,7 @@ body {
   padding: 1rem 0;
 }
 
-/*  4. CARDS DE PRODUTO (ProdutoCard.jsx) */
+/* Card Individual de Produto */
 .produto-card {
   background-color: var(--cor-card-fundo);
   border-radius: var(--borda-raio);
@@ -96,7 +259,6 @@ body {
   position: relative;
 }
 
-/* Efeito Hover sutil para dar vida à interface */
 .produto-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
@@ -115,7 +277,7 @@ body {
   color: var(--cor-primaria);
   margin-bottom: 0.5rem;
   font-weight: 600;
-  min-height: 2.6rem; /* Garante alinhamento mesmo com nomes maiores */
+  min-height: 2.6rem;
   display: flex;
   align-items: center;
 }
@@ -129,157 +291,186 @@ body {
 
 .produto-acoes {
   width: 100%;
-  margin-top: auto; /* Empurra o botão sempre para o final do card */
+  margin-top: auto;
   padding-top: 1rem;
 }
 
-/* 5. COMPONENTES GENÉRICOS DE UI (Selo.jsx e Botao.jsx) */
-/* Selo / Badge */
-.selo {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 50px;
-  margin-bottom: 0.5rem;
+/*  6. INTERFACES FORMULÁRIOS ESTILIZADOS */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 65vh;
+  padding: 1rem;
 }
 
-.selo-verde {
-  background-color: var(--cor-selo-verde);
-  color: var(--cor-selo-texto);
-}
-
-/* Se eu decidir criar outras cores de selo depois: */
-.selo-vermelho {
-  background-color: #e74c3c;
-  color: #ffffff;
-}
-
-/* Botão Customizado */
-.botao-customizado {
+.login-card {
+  background-color: #ffffff;
+  max-width: 400px;
   width: 100%;
-  background-color: var(--cor-secundaria);
-  color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: var(--borda-raio);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-card h2 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-size: 1.8rem;
+}
+
+.login-card p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-input {
+  padding: 0.8rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.login-input:focus {
+  border-color: #3498db;
+}
+
+.login-erro {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: left;
+}
+
+.login-botao {
+  background-color: #3498db;
+  color: white;
   border: none;
-  padding: 0.75rem;
+  padding: 0.9rem;
+  border-radius: 4px;
   font-size: 1rem;
   font-weight: bold;
-  border-radius: var(--borda-raio);
   cursor: pointer;
+  width: 37%; 
   transition: background-color 0.2s ease;
 }
 
-.botao-customizado:hover {
-  background-color: #16a085; /* Tom mais escuro para o hover */
+.login-botao:hover {
+  background-color: #2980b9;
 }
 
-.botao-customizado:active {
-  transform: scale(0.98);
+.cadastro-sucesso-alerta {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #c3e6cb;
+  margin-top: 1.5rem;
 }
 
-.botao-favorito {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, filter 0.2s ease;
+/* 7. PÁGINA: CENTRAL DO CLIENTE */
+.minha-conta-container {
+  padding: 1rem 0;
+  text-align: center;
 }
 
-.botao-favorito:hover {
-    transform: scale(1.2);
+.minha-conta-topo {
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
-.botao-favorito:active {
-    transform: scale(0.9);
+.painel-usuario h2 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
 }
 
-.botao-favorito.ativo {
-    filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.3));
+.painel-usuario p {
+  color: #7f8c8d;
 }
 
-.link-detalhes-container {
-    margin: 0.5rem 0;
-    text-align: center;
+.dados-usuario {
+  margin-top: 2rem;
+  border: 1px solid #cccccc;
+  padding: 1.2rem;
+  border-radius: var(--borda-raio);
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fdfdfd;
 }
 
-.link-detalhes {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
+.dados-usuario h3 {
+  margin-top: 0;
+  color: #34495e;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
-.link-detalhes:hover {
-    color: #2980b9;
-    text-decoration: underline; /* Mostra o sublinhado apenas quando passa o mouse */
+.dados-usuario p {
+  margin-bottom: 0.5rem;
+  color: var(--cor-texto);
 }
 
-.home-container {
-    padding: 1rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+.botao-sair {
+  margin-top: 2rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
 }
 
-.home-hero {
-    text-align: center;
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-    padding: 2.5rem 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.botao-sair:hover {
+  background-color: #c0392b;
 }
 
-.home-hero h1 {
-    font-size: 2.2rem;
-    margin: 0 0 0.5rem 0;
-}
-
-.home-hero p {
-    font-size: 1.1rem;
-    margin: 0;
-    opacity: 0.9;
-}
-
-/* Centraliza todo o conteúdo no meio da tela */
+/* 8. PÁGINA: ERRO 404 */
 .nao-encontrada-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh; /* Ocupa uma boa altura da tela */
-    text-align: center;
-    padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 2rem;
 }
 
 .nao-encontrada-conteudo {
-    max-width: 450px;
+  max-width: 450px;
 }
 
-/* Deixa o número 404 bem grande e em destaque */
 .erro-titulo {
-    font-size: 6rem;
-    margin: 0;
-    color: #e74c3c; /* Cor vermelha para indicar alerta de erro */
-    line-height: 1;
+  font-size: 6rem;
+  margin: 0;
+  color: #e74c3c;
+  line-height: 1;
 }
 
 .nao-encontrada-conteudo h2 {
-    font-size: 1.8rem;
-    margin: 1rem 0;
-    color: #2c3e50;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+  color: #2c3e50;
 }
 
 .nao-encontrada-conteudo p {
-    color: #7f8c8d;
-    margin-bottom: 2rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
 }
 
 .nao-encontrada-acao {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
