@@ -10,7 +10,6 @@ function MinhaConta() {
                 <BotaoVoltar />
             </div>
 
-            {/* Painel exclusivo do Cliente Logado na Ians Store */}
             <div className="painel-usuario">
                 <h2>Minha Conta</h2>
                 <p>Bem-vindo de volta! Você está conectado ao seu painel Ians Store.</p>
