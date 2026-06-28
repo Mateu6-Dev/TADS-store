@@ -1,3 +1,4 @@
 {
+  "root": "tads-store",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
