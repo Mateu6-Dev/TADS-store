@@ -2,7 +2,7 @@ import { Routes, Route} from "react-router-dom";
 import Layout from "./componentes/Layout";
 import Home from "./pages/Home";
 import Detalhe from "./pages/Detalhe";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import MinhaConta from "./pages/MinhaConta";
 import NaoEncontrado from "./pages/NaoEncontrado";
 import RotaPrivada from "./componentes/RotaPrivada";
